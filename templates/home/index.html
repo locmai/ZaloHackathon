@@ -1,0 +1,68 @@
+{% extends "home/base.html" %}
+{% block title %}Assign Employee{% endblock %}
+{% block body %}
+    <div class="content-section">
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <div class="center">
+                            <div class="dropdown">
+                                <button onclick="myFunction()" class="dropbtn">{{ select_button }}</button>
+                                  <div id="myDropdown" class="dropdown-content">
+                                    <input type="text" placeholder="Search.." id="myInput" class="search" onkeyup="filterFunction()">
+                                    <a href="/user?id=147141825">147141825</a>
+                                    <a href="/user?id=162979556">162979556</a>
+                                    <a href="/user?id=167286853">167286853</a>
+                                    <a href="/user?id=172745119">172745119</a>
+                                    <a href="/user?id=179066046">179066046</a>
+                                  </div>
+                            </div>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th width="40%"> Title </th>
+                                            <th width="20%"> Artist </th>
+                                            <th width="20%"> Composer </th>
+                                            <th width="20%"> Genre </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                         {%  for data_sample in list_data_sample %}
+                                            <tr>
+                                                 {%  for property in data_sample %}
+                                                    <td> {{ property }} </td>
+                                                {% endfor %}
+                                            </tr>
+                                         {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                        <a href="#" class="btn btn-default btn-lg">Suggest</a>
+                        <a href="/add" class="btn btn-default btn-lg">Add Suggest Music</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+        </script>
+{% endblock %}
